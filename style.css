@@ -1,0 +1,127 @@
+/* ============================================================
+   style.css — آي أم سبيشل — النسخة الخاصة (دراسة حالة فقط)
+   ============================================================ */
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    color: #1e293b;
+}
+
+/* ---- Decorative background blobs ---- */
+.bg-blob-1, .bg-blob-2, .bg-blob-3 {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+}
+.bg-blob-1 { top: -10%; right: -5%;  width: 500px; height: 500px; background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%); }
+.bg-blob-2 { bottom: -20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(236,72,153,0.09) 0%, transparent 70%); }
+.bg-blob-3 { top: 40%; left: 40%;  width: 400px; height: 400px; background: radial-gradient(circle, rgba(234,179,8,0.08) 0%, transparent 70%); }
+
+/* ---- Glass panels ---- */
+.glass-panel {
+    background: rgba(255,255,255,0.42);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 4px 20px rgba(31,38,135,0.06);
+}
+.glass-header {
+    background: rgba(15,23,42,0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.13);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.glass-input {
+    background: rgba(255,255,255,0.48);
+    border: 1px solid rgba(255,255,255,0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.glass-input:focus { background: rgba(255,255,255,0.75); border-color: #64748b; outline: none; }
+
+/* ---- Badges ---- */
+.badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1.5px solid; background: transparent; line-height: 1.6; }
+.badge-indigo { color: #4338ca; border-color: #4338ca; }
+.badge-slate  { color: #475569; border-color: #475569; }
+.badge-emerald{ color: #059669; border-color: #059669; }
+
+/* ---- Buttons ---- */
+.btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 4px; font-weight: 700; border-radius: 10px; border: 2px solid; background: transparent; cursor: pointer; transition: opacity 0.15s, transform 0.15s; line-height: 1.4; }
+.btn-outline:hover  { opacity: 0.75; }
+.btn-outline:active { transform: scale(0.97); }
+.btn-outline-slate   { color: #475569; border-color: #475569; }
+.btn-outline-indigo  { color: #4f46e5; border-color: #4f46e5; }
+.btn-outline-emerald { color: #059669; border-color: #059669; }
+.btn-outline-rose    { color: #e11d48; border-color: #e11d48; }
+
+.btn-solid-dark {
+    background: rgba(15,23,42,0.88);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.btn-solid-dark:hover { opacity: 0.85; }
+
+/* ---- Comments / replies ---- */
+.comment-block { position: relative; padding-right: 1rem; border-right: 3px solid rgba(79,70,229,0.25); }
+.comment-text { line-height: 2; font-size: 1rem; }
+.comment-step { animation: slideUp 0.2s ease forwards; }
+.nested-reply { margin-top: 0.75rem; margin-right: 1.5rem; padding-right: 1rem; border-right: 3px solid rgba(225,29,72,0.3); }
+.nested-reply.admin-reply { border-right-color: rgba(217,119,6,0.4); }
+
+/* ---- Scrollbar hide ---- */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---- Loading overlay ---- */
+#loadingOverlay {
+    position: fixed; inset: 0;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.8s ease, backdrop-filter 0.8s ease, -webkit-backdrop-filter 0.8s ease;
+}
+
+/* ---- Toast ---- */
+#copyToast { pointer-events: none; }
+#copyToast.show { display: block !important; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.slide-up { animation: slideUp 0.3s ease forwards; }
+
+@keyframes fadeInOut {
+    0%   { opacity: 0; transform: translateY(8px); }
+    15%  { opacity: 1; transform: translateY(0); }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+.copy-toast { animation: fadeInOut 2.5s ease forwards; }
+
+/* ---- Number input spinner hide ---- */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+
+/* ---- Modal display fix ---- */
+#pinModal[style*="display: flex"], #pinModal[style*="display:flex"],
+#adminModal[style*="display: flex"], #adminModal[style*="display:flex"] {
+    display: flex !important;
+}
+
+#logoClick { transition: transform 0.1s; }
+#logoClick:active { transform: scale(0.96); }
